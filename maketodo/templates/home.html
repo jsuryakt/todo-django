@@ -24,7 +24,7 @@
           loading="lazy" /> Todo
         </a>
       </nav>
-      
+
       <div class="container-fluid">
         <h2 class="text-center">Add your Todo here!</h2>
       </div>
@@ -43,7 +43,7 @@
               </div>
               <button
                 type="submit"
-                class="ml-3 mr-1 btn btn-primary"
+                class="form-group ml-4 btn btn-primary "
                 style="color: #eeff00"
               >
                 ADD
@@ -57,28 +57,28 @@
           {% for todo in todo_list %}
           <div class="row no-gutters mb-3">
             <div class="col">
-              <p class="lead pl-5"><strong>{{ todo.todo_text }}</strong></p>
-              <p class="lead text-muted" style="font-size: 13px; margin-left: 48px">
+              <p class="lead "><strong>{{ todo.todo_text }}</strong></p>
+              <p class="lead text-muted" style="font-size: 13px;">
                 Added on: {{ todo.added_on }}
               </p>
               <!-- Show updated time info only if it's not equal to the add time info -->
               {% if todo.added_on != todo.updated_on %}
-              <p class="lead text-muted" style="font-size: 13px; margin-left: 48px">
+              <p class="lead text-muted" style="font-size: 13px;">
                 Updated on: {{ todo.updated_on }}
               </p>
               {% endif %}
             </div>
       
-            <div class="col">
+            <div >
 
-                   <a href="{% url 'edit_todo' todo.id %}" type="button" class="btn btn-info float-right">EDIT</a>
+                   <a href="{% url 'edit_todo' todo.id %}" type="button" class="btn btn-info float-right mr-2 ml-1">EDIT</a>
 
             </div>
       
-            <div class="col">
+            <div >
                 <form method="POST" action="{% url 'delete_todo' todo.id %} ">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-danger float-right mr-5">
+                    <button type="submit" class="btn btn-danger float-right ml-2">
                         DELETE
                       </button>
                 </form>

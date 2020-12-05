@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>EDIT {{ todo_obj.todo_text }}</title>
+    <title>Edit {{ todo_obj.todo_text }}</title>
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
@@ -17,14 +17,15 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-light bg-white">
-        <a class="navbar-brand" href="#" style="font-size: 32px">
-          <img class="mb-2" src="{% static "images/ticktick-app-icon.jpg" %}"
-          width="50" height="50" class="d-inline-block align-top" alt=""
-          loading="lazy" /> Todo
-        </a>
-      </nav>
       
+    <nav class="navbar navbar-light bg-white">
+      <a class="navbar-brand" href="#" style="font-size: 32px">
+        <img class="mb-2" src="{% static "images/ticktick-app-icon.jpg" %}"
+        width="50" height="50" class="d-inline-block align-top" alt=""
+        loading="lazy" /> Todo Edit 
+      </a>
+    </nav>
+
       <div class="container-fluid">
         <h2 class="text-center">EDIT your Todo here!</h2>
       </div>

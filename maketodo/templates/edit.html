@@ -17,39 +17,37 @@
   </head>
 
   <body>
-      
     <nav class="navbar navbar-light bg-white">
       <a class="navbar-brand" href="#" style="font-size: 32px">
         <img class="mb-2" src="{% static "images/ticktick-app-icon.jpg" %}"
         width="50" height="50" class="d-inline-block align-top" alt=""
-        loading="lazy" /> Todo Edit 
+        loading="lazy" /> Todo Edit
       </a>
     </nav>
 
-      <div class="container-fluid">
-        <h2 class="text-center">EDIT your Todo here!</h2>
-      </div>
-      
-      <div class="container">
-        <div class="row">
-          <div class="col">
-            <form
-              class="form-inline justify-content-center mt-3 mb-5"
-              action="{% url 'edit_todo' todo_obj.pk %}"
-              method="POST"
+    <div class="container-fluid">
+      <h2 class="text-center">UPDATE your Todo here!</h2>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <form
+            class="form-inline justify-content-center mt-3 mb-5"
+            action="{% url 'edit_todo' todo_obj.pk %}"
+            method="POST"
+          >
+            {% csrf_token %}
+            <div class="form-group">{{ form.todo_text }}</div>
+            <button
+              type="submit"
+              class="form-group ml-4 btn btn-outline-success"
             >
-              {% csrf_token %}
-              <div class="form-group">
-                {{ form.todo_text }}
-              </div>
-              <button
-                type="submit"
-                class="ml-3 mr-1 btn btn-primary"
-                style="color: #eeff00"
-              >
-                ADD
-              </button>
-            </form>
-          </div>
+              UPDATE
+            </button>
+          </form>
         </div>
       </div>
+    </div>
+  </body>
+</html>

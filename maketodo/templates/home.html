@@ -18,74 +18,73 @@
 
   <body>
     <nav class="navbar navbar-light bg-white">
-        <a class="navbar-brand" href="#" style="font-size: 32px">
-          <img class="mb-2" src="{% static "images/ticktick-app-icon.jpg" %}"
-          width="50" height="50" class="d-inline-block align-top" alt=""
-          loading="lazy" /> Todo
-        </a>
-      </nav>
+      <a class="navbar-brand" href="#" style="font-size: 32px">
+        <img class="mb-2" src="{% static "images/ticktick-app-icon.jpg" %}"
+        width="50" height="50" class="d-inline-block align-top" alt=""
+        loading="lazy" /> Todo
+      </a>
+    </nav>
 
-      <div class="container-fluid">
-        <h2 class="text-center">Add your Todo here!</h2>
-      </div>
-      
-      <div class="container">
-        <div class="row">
-          <div class="col">
-            <form
-              class="form-inline justify-content-center mt-3 mb-5"
-              action="add_todo/"
-              method="POST"
+    <div class="container-fluid">
+      <h2 class="text-center">Add your Todo here!</h2>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <form
+            class="form-inline justify-content-center mt-3 mb-5"
+            action="add_todo/"
+            method="POST"
+          >
+            {% csrf_token %}
+            <div class="form-group">{{ form.todo_text }}</div>
+            <button
+              type="submit"
+              class="form-group ml-4 btn btn-success"
             >
-              {% csrf_token %}
-              <div class="form-group">
-                {{ form.todo_text }}
-              </div>
-              <button
-                type="submit"
-                class="form-group ml-4 btn btn-primary "
-                style="color: #eeff00"
-              >
-                ADD
-              </button>
-            </form>
-          </div>
+              ADD
+            </button>
+          </form>
         </div>
       </div>
-      
-      <div class="container">
-          {% for todo in todo_list %}
-          <div class="row no-gutters mb-3">
-            <div class="col">
-              <p class="lead "><strong>{{ todo.todo_text }}</strong></p>
-              <p class="lead text-muted" style="font-size: 13px;">
-                Added on: {{ todo.added_on }}
-              </p>
-              <!-- Show updated time info only if it's not equal to the add time info -->
-              {% if todo.added_on != todo.updated_on %}
-              <p class="lead text-muted" style="font-size: 13px;">
-                Updated on: {{ todo.updated_on }}
-              </p>
-              {% endif %}
-            </div>
-      
-            <div >
+    </div>
 
-                   <a href="{% url 'edit_todo' todo.id %}" type="button" class="btn btn-info float-right mr-2 ml-1">EDIT</a>
-
-            </div>
-      
-            <div >
-                <form method="POST" action="{% url 'delete_todo' todo.id %} ">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-danger float-right ml-2">
-                        DELETE
-                      </button>
-                </form>
-            </div>
-          </div>
-          {% endfor %}
+    <div class="container">
+      {% for todo in todo_list %}
+      <div class="row no-gutters mb-3">
+        <div class="col">
+          <p class="lead"><strong>{{ todo.todo_text }}</strong></p>
+          <p class="lead text-muted" style="font-size: 13px">
+            Added on: {{ todo.added_on }}
+          </p>
+          <!-- Show updated time info only if it's not equal to the add time info -->
+          {% if todo.added_on != todo.updated_on %}
+          <p class="lead text-muted" style="font-size: 13px">
+            Updated on: {{ todo.updated_on }}
+          </p>
+          {% endif %}
         </div>
+
+        <form action="{% url 'edit_todo' todo.id %}">
+          {% csrf_token %}
+          <button
+            type="submit"
+            class="btn btn-outline-info float-right mr-2 ml-1"
+          >
+            EDIT
+          </button>
+        </form>
+
+        <form method="POST" action="{% url 'delete_todo' todo.id %} ">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-danger float-right ml-2">
+            DELETE
+          </button>
+        </form>
+      </div>
+      {% endfor %}
+    </div>
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
